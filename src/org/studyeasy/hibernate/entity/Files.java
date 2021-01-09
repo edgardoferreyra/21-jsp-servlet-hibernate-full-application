@@ -24,12 +24,19 @@ public class Files {
 		
 	}
 
-
 	public Files(String fileName) {
 		super();
 		this.fileName = fileName;
 	}
 
+
+	public Files(int id, String fileName, String label, String caption) {
+		super();
+		this.id = id;
+		this.fileName = fileName;
+		this.label = label;
+		this.caption = caption;
+	}
 
 	public int getId() {
 		return id;
