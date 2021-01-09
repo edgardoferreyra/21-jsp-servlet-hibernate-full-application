@@ -1,5 +1,7 @@
 package org.studyeasy.hibernate.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -17,6 +19,13 @@ public class FilesDAO {
 		session.save(file);
 		session.getTransaction().commit();
 		System.out.println(file.getFileName()+" Got added.");
+	}
+	public List<Files> listFiles(){
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		List<Files> files = session.createQuery("from files").getResultList();
+		//session.getTransaction().commit();
+		return files;
 	}
 
 }
