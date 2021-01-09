@@ -64,10 +64,19 @@ public class FilesHandler extends HttpServlet {
 
 	}
 	
-	private void deleteImage(HttpServletRequest request, HttpServletResponse response) {
+	private void deleteImage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int fileId = Integer.parseInt(request.getParameter("fileId"));
 		Files file = new FilesDAO().getFile(fileId);
-		
+		//Elimino el registro de la base de datos
+		new FilesDAO().deleteFile(fileId);
+		//Elimino el archivo del sistema de archivos del sistema operativo
+		File fileOnDisc = new File(path+file.getFileName());
+		if(fileOnDisc.delete()) {
+			System.out.println("File got deleted from filesystem.");
+		}else {
+			System.out.println("File NOT deleted from filesystem.");
+		}
+		listingImages(request,response);
 	}
 
 
