@@ -44,7 +44,10 @@
 				out.print("<td>"+form+"</td>");
 				
 				out.print("<td><ul><li><a href='"+request.getContextPath()+"/FilesHandler?action=viewImage&fileId="+
-						file.getId()+"'>View</a></li></ul></td></tr>");
+						file.getId()+"'>View</a></li>");
+				
+				out.print("<li><a href='"+request.getContextPath()+"/FilesHandler?action=deleteImage&fileId="+
+						file.getId()+"' onclick=\"if(!confirm('Are you sure to delete the user?')) return false\">Delete</a></li></ul></td></tr>");
 		}	
 %>
 </table>
